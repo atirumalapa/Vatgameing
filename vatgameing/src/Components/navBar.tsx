@@ -37,6 +37,8 @@ function NavBar() {
   const navButtons = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
+    { to: "/tools", label: "Tools" },
+    { to: "/login", label: "Login" },
     { to: "/contact", label: "Contact" },
   ];
   return (

@@ -1,0 +1,36 @@
+:root{
+    --text_color:#000000;
+    --text_color_headeing: #054a91;
+    --bg: #fff8f0;
+    --card_bg: #ffffff;
+    --border_color: #7e8d85;
+    --accent_color: #054a91;
+    --accent_bg: rgba(205,139,118,0.15);
+    --accent_border_color: rgba(205,139,118,0.5);
+    --xp: #cd8b76;
+    --btn_primary: #cd8b76;
+    --btn_secondary: #054a91;
+    --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px;
+    --text_body: "Comic Neue", system-ui, Inter, arial, sans-serif;
+    --text_heading: "MedievalSharp", serif;
+
+    color-scheme: light dark;
+    text-rendering: optimizeLegibility;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text_color:#fff8f0;
+        --text_color_headeing: #f8c89d;
+        --bg: #000000;
+        --card_bg: #043775;
+        --border_color: #66736e;
+        --accent_color: #f8c89d;
+        --accent_bg: rgba(248,200,157,0.15);
+        --accent_border_color: rgba(248,200,157,0.5);
+        --xp: #f8c89d;
+        --btn_primary: #b36355;
+        --btn_secondary: #043775;
+        --shadow: rgba(0, 0, 0, 0.6) 0 10px 15px -3px;
+    }
+}

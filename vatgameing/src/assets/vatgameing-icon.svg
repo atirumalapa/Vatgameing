@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2F6BFF"/>
+      <stop offset="1" stop-color="#A23BFF"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1450"/>
+      <stop offset="1" stop-color="#C2477A"/>
+    </linearGradient>
+    <linearGradient id="vfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4FE3FF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#4FE3FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="disc"><circle cx="256" cy="256" r="232"/></clipPath>
+  </defs>
+
+  <!-- Background disc -->
+  <circle cx="256" cy="256" r="232" fill="#0B0F2E"/>
+
+  <g clip-path="url(#disc)">
+    <!-- Sky -->
+    <rect x="0" y="0" width="512" height="256" fill="url(#sky)"/>
+    <!-- Sun -->
+    <circle cx="256" cy="150" r="72" fill="#FF8A4C" opacity="0.9"/>
+    <!-- Mountain -->
+    <polygon points="256,88 392,256 120,256" fill="#2B2A8C"/>
+    <polygon points="256,88 392,256 256,256" fill="#1E1D66"/>
+    <!-- Snow cap -->
+    <polygon points="256,88 284,123 268,116 256,132 244,114 228,123" fill="#FFFFFF"/>
+    <!-- Glowing V reflection -->
+    <polygon points="120,256 256,424 392,256" fill="url(#vfill)"/>
+    <polyline points="120,256 256,424 392,256" fill="none" stroke="#4FE3FF"
+      stroke-width="12" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)"/>
+    <!-- Horizon -->
+    <line x1="24" y1="256" x2="488" y2="256" stroke="#4FE3FF" stroke-width="5" filter="url(#glow)"/>
+  </g>
+
+  <!-- Magic orb at the tip of the V -->
+  <circle cx="256" cy="424" r="16" fill="#CFF8FF" filter="url(#glow)"/>
+
+  <!-- Gradient ring -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="url(#ring)" stroke-width="16"/>
+</svg>

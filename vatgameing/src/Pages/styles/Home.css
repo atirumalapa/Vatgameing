@@ -1,0 +1,27 @@
+h1{
+    font: 100px var(--text_heading);
+}
+
+h2{
+    font: 80px var(--text_heading);
+}
+
+h3{
+    font: 60px var(--text_heading);
+}
+
+h4{
+    font: 40px var(--text_heading);
+}
+
+h5{
+    font: 30px var(--text_heading);
+}
+
+p{
+    font: 20px/1.2 var(--text_body);
+}
+.logo{
+    width: 150px;
+    height: 150px;
+}

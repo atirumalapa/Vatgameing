@@ -1,4 +1,4 @@
-import "./styles/about.css"
+import "./styles/About.css"
 import NavBar from "../Components/navBar";
 
 function About() {

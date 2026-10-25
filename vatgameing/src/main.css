@@ -34,3 +34,16 @@
         --shadow: rgba(0, 0, 0, 0.6) 0 10px 15px -3px;
     }
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text_color);
+    font-family: var(--text_body);
+}

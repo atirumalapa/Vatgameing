@@ -1,0 +1,171 @@
+/* Sizes are in vmin because the screen is the size of the viewport */
+.device {
+    --bezel-top: 2.6vmin;
+    --bezel-side: 2vmin;
+    --bezel-bottom: 2.6vmin;
+    --frame-radius: 2vmin;
+    --screen-radius: 0.6vmin;
+    --frame: #0d0d0f;
+    --frame-edge: #2a2a2e;
+    --base-top: #4a4d52;
+    --base-bottom: #26282b;
+
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 50%;
+}
+
+.device-bezel {
+    position: absolute;
+    top: calc(var(--bezel-top) * -1);
+    left: calc(var(--bezel-side) * -1);
+    right: calc(var(--bezel-side) * -1);
+    bottom: calc(var(--bezel-bottom) * -1);
+    background-color: var(--frame);
+    border-radius: var(--frame-radius);
+    box-shadow:
+        0 0 0 0.4vmin var(--frame-edge),
+        0 4vmin 10vmin rgba(0, 0, 0, 0.7);
+}
+
+.device-screen {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: var(--screen-radius);
+    background-color: #000;
+}
+
+.device-screen-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Keep the site's own z-indexes (e.g. the sticky nav) under the glass */
+    isolation: isolate;
+}
+
+/* The "off" glass: black with a faint reflection */
+.device-screen-off {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 38%),
+        #050506;
+}
+
+.device-camera {
+    position: absolute;
+    top: calc(var(--bezel-top) * -0.5);
+    left: 50%;
+    width: 0.8vmin;
+    height: 0.8vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #3b5878, #0b1420 70%);
+    transform: translate(-50%, -50%);
+}
+
+/* Laptop keyboard deck, seen edge-on */
+.device-base {
+    position: absolute;
+    top: calc(100% + var(--bezel-bottom));
+    left: calc((var(--bezel-side) + 6vmin) * -1);
+    right: calc((var(--bezel-side) + 6vmin) * -1);
+    height: 3.2vmin;
+    background: linear-gradient(var(--base-top), var(--base-bottom));
+    border-radius: 0.3vmin 0.3vmin 3vmin 3vmin / 0.3vmin 0.3vmin 2.4vmin 2.4vmin;
+}
+
+/* Thumb notch for opening the lid */
+.device-base::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 42%;
+    right: 42%;
+    height: 32%;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 1vmin 1vmin;
+}
+
+.device--macbook {
+    --frame-edge: #c7c9cd;
+    --base-top: #e4e5e7;
+    --base-bottom: #9fa2a7;
+}
+
+.device--windows {
+    --bezel-bottom: 3.6vmin;
+    --frame: #141417;
+    --frame-edge: #34353a;
+    --base-top: #3a3b40;
+    --base-bottom: #1b1c1f;
+}
+
+.device--laptop {
+    --bezel-bottom: 3.2vmin;
+    --frame: #1c1d20;
+    --frame-edge: #45474c;
+    --base-top: #6b6f76;
+    --base-bottom: #3c3f44;
+}
+
+.device--tablet {
+    --bezel-top: 3.4vmin;
+    --bezel-side: 3.4vmin;
+    --bezel-bottom: 3.4vmin;
+    --frame-radius: 5vmin;
+    --screen-radius: 1.6vmin;
+    --frame: #111113;
+    --frame-edge: #55585e;
+}
+
+.device--iphone,
+.device--android {
+    --bezel-top: 1.6vmin;
+    --bezel-side: 1.6vmin;
+    --bezel-bottom: 1.6vmin;
+    --frame: #08080a;
+}
+
+.device--iphone {
+    --frame-radius: 11vmin;
+    --screen-radius: 9.5vmin;
+    --frame-edge: #6d6a66;
+}
+
+.device--android {
+    --frame-radius: 7vmin;
+    --screen-radius: 5.6vmin;
+    --frame-edge: #3d4046;
+}
+
+/* Side buttons on phones */
+.device--iphone .device-bezel::after,
+.device--android .device-bezel::after {
+    content: "";
+    position: absolute;
+    top: 24%;
+    right: -0.9vmin;
+    width: 0.6vmin;
+    height: 13%;
+    background-color: var(--frame-edge);
+    border-radius: 0 0.4vmin 0.4vmin 0;
+}
+
+/* Phone cameras sit on the glass, so they cover part of the screen */
+.device--iphone .device-camera {
+    top: 2.4vmin;
+    width: 31vmin;
+    height: 9vmin;
+    border-radius: 5vmin;
+    background: #000;
+    transform: translateX(-50%);
+}
+
+.device--android .device-camera {
+    top: 2.6vmin;
+    width: 3.6vmin;
+    height: 3.6vmin;
+    background: radial-gradient(circle at 35% 35%, #2a3a4d, #000 65%);
+    transform: translateX(-50%);
+}

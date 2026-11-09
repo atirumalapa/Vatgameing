@@ -1,38 +1,63 @@
-:root{
-    --text_color:#000000;
-    --text_color_headeing: #054a91;
-    --bg: #fff8f0;
-    --card_bg: #ffffff;
-    --border_color: #7e8d85;
-    --accent_color: #054a91;
-    --accent_bg: rgba(205,139,118,0.15);
-    --accent_border_color: rgba(205,139,118,0.5);
-    --xp: #cd8b76;
-    --btn_primary: #cd8b76;
-    --btn_secondary: #054a91;
-    --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px;
+/* Dark and magical is the default theme */
+:root {
+    --text_color: #f4eefc;
+    --text_color_headeing: #f8c89d;
+    --bg: #0e0a24;
+    --bg_glow:
+        radial-gradient(ellipse at 15% 0%, rgba(124, 58, 237, 0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 100%, rgba(5, 74, 145, 0.35) 0%, transparent 55%);
+    --card_bg: #1c1540;
+    --border_color: #8f84bd;
+    --accent_color: #f8c89d;
+    --accent_bg: rgba(248, 200, 157, 0.15);
+    --accent_border_color: rgba(248, 200, 157, 0.5);
+    --nav_bg: rgba(14, 10, 36, 0.85);
+    --xp: #f8c89d;
+    --btn_primary: #6d32d9;
+    --btn_secondary: #2a2060;
+    --error: #ff9b8f;
+    --success: #7fe0b0;
+    --shadow: rgba(124, 58, 237, 0.35) 0 10px 30px -8px;
     --text_body: "Comic Neue", system-ui, Inter, arial, sans-serif;
     --text_heading: "MedievalSharp", serif;
 
-    color-scheme: light dark;
+    color-scheme: dark;
     text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text_color:#fff8f0;
-        --text_color_headeing: #f8c89d;
-        --bg: #000000;
-        --card_bg: #043775;
-        --border_color: #66736e;
-        --accent_color: #f8c89d;
-        --accent_bg: rgba(248,200,157,0.15);
-        --accent_border_color: rgba(248,200,157,0.5);
-        --xp: #f8c89d;
-        --btn_primary: #b36355;
-        --btn_secondary: #043775;
-        --shadow: rgba(0, 0, 0, 0.6) 0 10px 15px -3px;
-    }
+:root[data-theme="light"] {
+    --text_color: #000000;
+    --text_color_headeing: #054a91;
+    --bg: #fff8f0;
+    --bg_glow: none;
+    --card_bg: #ffffff;
+    --border_color: #7e8d85;
+    --accent_color: #054a91;
+    --accent_bg: rgba(205, 139, 118, 0.15);
+    --accent_border_color: rgba(205, 139, 118, 0.5);
+    --nav_bg: rgba(255, 248, 240, 0.85);
+    --xp: #054a91;
+    --btn_primary: #cd8b76;
+    --btn_secondary: #054a91;
+    --error: #c0392b;
+    --success: #2e8b57;
+    --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px;
+
+    color-scheme: light;
+}
+
+:root[data-dyslexia-font="true"] {
+    --text_body: "Atkinson Hyperlegible", system-ui, arial, sans-serif;
+    --text_heading: "Atkinson Hyperlegible", system-ui, arial, sans-serif;
+}
+
+/* Percentages so these build on the browser's own text size setting */
+:root[data-text-size="large"] {
+    font-size: 118.75%;
+}
+
+:root[data-text-size="xlarge"] {
+    font-size: 137.5%;
 }
 
 *,
@@ -43,7 +68,25 @@
 
 body {
     margin: 0;
+    min-height: 100vh;
     background-color: var(--bg);
+    background-image: var(--bg_glow);
+    background-attachment: fixed;
     color: var(--text_color);
     font-family: var(--text_body);
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent_color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
 }

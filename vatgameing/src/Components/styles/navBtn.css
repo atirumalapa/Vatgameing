@@ -12,6 +12,14 @@
     transition: color 0.3s ease;
 }
 
+.nav-logout {
+    background: none;
+    border: none;
+    color: var(--text_color);
+    cursor: pointer;
+    text-align: left;
+}
+
 .menu-nav-button:hover {
     color: var(--accent_color);
 }

@@ -33,7 +33,6 @@
 }
 
 .main-nav-container {
-    color-scheme: light dark;
     display: flex;
     position: sticky;
     margin: 0;
@@ -43,18 +42,10 @@
     padding: 10px 40px;
     top: 0;
     left: 0;
-    background-color: rgba(255, 248, 240, 0.85);
+    background-color: var(--nav_bg);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid #7E8D85;
-}
-
-
-@media (prefers-color-scheme: dark){
-    .main-nav-container{
-        background-color: 	rgba(0, 0, 0, 0.8);
-        border-color: #66736E;
-    }
+    border-bottom: 1px solid var(--border_color);
 }
 
 .home-brand-logo {
@@ -64,6 +55,8 @@
 
 .nav-links-wrapper .primary-links {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 8px;
 }
 

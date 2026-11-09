@@ -2,6 +2,9 @@ import "./styles/navBar.css";
 import Navbtn from "./navBtn.tsx";
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/config.js";
+import { useAuth } from "../hooks/useAuth.ts";
 import logo from "../assets/Firefly_RemoveBackground.png";
 
 function HomeButton() {
@@ -9,7 +12,7 @@ function HomeButton() {
     <Link to="/" className="home-brand-wrapper">
       <div className="home-brand-container">
         <div className="home-brand-logo">
-          <img src={logo} alt="Logo" className="home-brand-logo-image" />
+          <img src={logo} alt="" className="home-brand-logo-image" />
 
           <span className="home-brand-text-line1">VATG</span>
         </div>
@@ -26,6 +29,7 @@ function HomeButton() {
 function NavBar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -33,13 +37,25 @@ function NavBar() {
   const closeNav = () => {
     setIsNavOpen(false);
   };
+  const handleLogOut = () => {
+    closeNav();
+    void signOut(auth);
+  };
+
+  const authButtons = user
+    ? [{ to: "/dashboard", label: "Dashboard" }]
+    : [
+        { to: "/login", label: "Log in" },
+        { to: "/signup", label: "Sign up" },
+      ];
 
   const navButtons = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
     { to: "/tools", label: "Tools" },
-    { to: "/login", label: "Login" },
     { to: "/contact", label: "Contact" },
+    { to: "/settings", label: "Settings" },
+    ...authButtons,
   ];
   return (
     <nav
@@ -76,6 +92,16 @@ function NavBar() {
               click={closeNav}
             />
           ))}
+          {user && (
+            <button
+              type="button"
+              className="menu-nav-button nav-logout"
+              onClick={handleLogOut}
+            >
+              <span className="nav-text">Log out</span>
+              <span className="nav-hover-line"></span>
+            </button>
+          )}
         </div>
       </div>
     </nav>

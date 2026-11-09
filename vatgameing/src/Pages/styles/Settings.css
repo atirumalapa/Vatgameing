@@ -1,0 +1,33 @@
+/* Overrides the column layout .auth-form gives its labels */
+.auth-form .settings-option {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.settings-option input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--btn_primary);
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.settings-note {
+    margin: 0;
+}
+
+.settings-group legend {
+    margin-bottom: 8px;
+    padding: 0;
+    font-weight: 700;
+}

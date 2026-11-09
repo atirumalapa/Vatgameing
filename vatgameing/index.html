@@ -9,8 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=MedievalSharp&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Comic+Neue:wght@400;700&family=MedievalSharp&display=swap"
     />
+    <script>
+      // Runs before first paint so light-mode users never see a dark flash.
+      try {
+        var saved = JSON.parse(localStorage.getItem("vatg-settings") || "{}");
+        if (saved.theme) document.documentElement.dataset.theme = saved.theme;
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

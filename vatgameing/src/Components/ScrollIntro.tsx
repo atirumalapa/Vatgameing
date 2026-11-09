@@ -97,7 +97,9 @@ function ScrollIntro({ children, complete, onComplete, onSkip }: ScrollIntroProp
       <section className="intro-stage" aria-label="Intro">
         <div className="intro-glow" aria-hidden="true" />
         <div className="device-rig">
-          <DeviceFrame kind={deviceKind} inert={complete}>
+          {/* Always inert: the links in here are only a picture of the site.
+              Otherwise keyboard users tab to links hidden behind the off screen. */}
+          <DeviceFrame kind={deviceKind} inert>
             {children}
           </DeviceFrame>
         </div>

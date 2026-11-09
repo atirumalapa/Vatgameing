@@ -5,6 +5,7 @@
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
     "allowArbitraryExtensions": true,
+    "allowJs": true,
     "skipLibCheck": true,
 
     /* Bundler mode */

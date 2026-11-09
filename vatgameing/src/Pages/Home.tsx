@@ -125,11 +125,13 @@ function Home() {
         </>
       )}
       <HomeSections />
-      <footer className="home-footer">
-        <button type="button" className="home-replay" onClick={replayIntro}>
-          Replay Intro
-        </button>
-      </footer>
+      {!prefersReducedMotion() && (
+        <footer className="home-footer">
+          <button type="button" className="home-replay" onClick={replayIntro}>
+            Replay Intro
+          </button>
+        </footer>
+      )}
     </div>
   );
 }

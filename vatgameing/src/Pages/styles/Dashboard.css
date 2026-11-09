@@ -1,0 +1,38 @@
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 16px;
+}
+
+.dashboard h1 {
+    margin: 0 0 32px;
+    font-family: var(--text_heading);
+    color: var(--text_color_headeing);
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0;
+}
+
+.dashboard-stat {
+    flex: 1 1 200px;
+    padding: 24px;
+    background-color: var(--card_bg);
+    border: 1px solid var(--border_color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-stat dt {
+    font-weight: 700;
+}
+
+.dashboard-stat dd {
+    margin: 8px 0 0;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--xp);
+}

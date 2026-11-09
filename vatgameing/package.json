@@ -7,10 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:rules": "firebase emulators:exec --only auth,firestore \"node --test tests/firestore.rules.test.mjs\"",
+    "test:functions": "firebase emulators:exec --only firestore \"cd functions && venv/bin/python -m unittest test_reminders\""
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "firebase": "^13.2.0",
     "gsap": "^3.15.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

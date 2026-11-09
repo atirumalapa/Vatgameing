@@ -1,0 +1,39 @@
+rules_version='2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+
+      // New accounts must start at zero.
+      allow create: if isOwner(uid)
+        && request.resource.data.xp == 0
+        && request.resource.data.streak == 0
+        && request.resource.data.streakFreezes == 0;
+
+      // These fields belong to Cloud Functions, which bypass these rules.
+      allow update: if isOwner(uid)
+        && !request.resource.data.diff(resource.data).affectedKeys()
+          .hasAny(['xp', 'streak', 'streakFreezes']);
+
+      // Delete-and-recreate would otherwise be a way to rewrite those fields.
+      allow delete: if false;
+
+      // {collection} is required: a bare {document=**} also matches
+      // users/{uid} itself, which would cancel every rule above.
+      match /{collection}/{document=**} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // Cloud Functions create and send these, and they bypass these rules.
+    // Keeping browsers out means nobody can queue a push notification.
+    match /reminders/{reminderId} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Builds and lints the site on every push and pull request.
+# The branch rules for main and dev require this "build-and-lint" check
+# to pass before a pull request can be merged.
+name: Check
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vatgameing
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: vatgameing/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
